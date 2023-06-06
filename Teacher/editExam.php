@@ -133,8 +133,8 @@ else {
                 </form>
             </section> 
           </div>      
-        <script src="../asset/jquery/jquery.min.js"></script>
-        <script src="../asset/js/adminlte.js"></script>
+        <script src="../bootstrap-4.6.1-dist/asset/jquery/jquery.min.js"></script>
+        <script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
         <script>
             var choicesWrapper = document.getElementById('choicesWrapper');
             var answerContainer = document.getElementById('answerContainer');

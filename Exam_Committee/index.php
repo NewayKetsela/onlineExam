@@ -13,9 +13,9 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exam Committee</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../asset/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../asset/css/adminlte.min.css">
-    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/adminlte.min.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/style.css">
 </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="wrapper">
@@ -30,7 +30,7 @@ else {
             <section class="content">  
                         <br<br>
                   <div class="info-box">
-                     <span class="info-box-icon bg2 elevation-1"><i class="fas fa-user-graduate" style="color: rgb(211, 209, 207);"></i></span>
+                     <span class="info-box-icon bg2 elevation-1"><i class="fas fa-user" style="color: rgb(211, 209, 207);"></i></span>
 
                         <div class="info-box-content">
                            <span class="info-box-text">Welcome</span>
@@ -47,8 +47,8 @@ else {
          </div>
         </div>
       </div>
-      <script src="../asset/jquery/jquery.min.js"></script>
-      <script src="../asset/js/adminlte.js"></script>
+      <script src="../bootstrap-4.6.1-dist/asset/jquery/jquery.min.js"></script>
+      <script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
    </body>
 </html>
 <?php } ?>

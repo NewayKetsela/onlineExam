@@ -8,9 +8,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Online Examination System</title>
       <!-- Font Awesome -->
-      <link rel="stylesheet" href="../asset/fontawesome/css/all.min.css">
-      <link rel="stylesheet" href="../asset/css/adminlte.min.css">
-      <link rel="stylesheet" href="../asset/css/style.css">
+      <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/fontawesome/css/all.min.css">
+      <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/adminlte.min.css">
+      <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/style.css">
             <style type="text/css">
                td a.btn{
                   font-size: 0.7rem;
@@ -75,8 +75,8 @@
          <!-- Main Sidebar Container -->
          <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: rgba(39,93,43);">
                         <!-- Brand Logo -->
-            <a href="index.html" class="brand-link animated swing">
-            <img src="../asset/img/logo.png" alt="DSMS Logo" width="200" style="margin-bottom: -50px;">
+            <a href="index.php" class="brand-link animated swing">
+            <img src="../bootstrap-4.6.1-dist/asset/img/logo.png" alt="DSMS Logo" width="200" style="margin-bottom: -50px;">
             </a>
             <!-- Sidebar -->
             <div class="sidebar">

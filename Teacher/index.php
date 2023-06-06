@@ -24,7 +24,7 @@ else {
             <section class="content">  
                         <br<br>
                   <div class="info-box">
-                     <span class="info-box-icon bg2 elevation-1"><i class="fas fa-user-graduate" style="color: rgb(211, 209, 207);"></i></span>
+                     <span class="info-box-icon bg2 elevation-1"><i class="fas fa-user" style="color: rgb(211, 209, 207);"></i></span>
 
                         <div class="info-box-content">
                            <span class="info-box-text">Welcome</span>
@@ -41,8 +41,8 @@ else {
             </div>      
          </div>
       </div>
-      <script src="../asset/jquery/jquery.min.js"></script>
-      <script src="../asset/js/adminlte.js"></script>
+      <script src="../bootstrap-4.6.1-dist/asset/jquery/jquery.min.js"></script>
+      <script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
    </body>
 </html>
 <?php } ?>

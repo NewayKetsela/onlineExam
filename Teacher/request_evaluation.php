@@ -9,7 +9,11 @@ else {
         $db = Database::getInstance();
         $con = $db->getConnection();
         $username = $_SESSION['login'];
-        $T_ID = substr($username, -4);
+        $T_ID = substr($username, -4);  
+        if (!isset($_SESSION['request'])) {
+            $_SESSION['request'] = 0;
+         
+         }
 	?>
 
 <html lang="en"> 
@@ -18,9 +22,9 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exam Evaluation Request</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../asset/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../asset/css/adminlte.min.css">
-    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/adminlte.min.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -83,6 +87,35 @@ else {
                 echo $c_name; 
                 }
             ?>
+            <br> <br>
+            <div class="input-group">
+                <label for="ExamTime" >Exam Time:</label>&nbsp&nbsp&nbsp&nbsp 
+                <input type="text" id="ExamTime" name="ExamTime" class="" placeholder="Enter exam time" style="width: 150px;">
+                <script>
+                    const examTimeInput = document.getElementById('ExamTime');
+                        const currentValue = this.value;
+                        if( currentValue ==='' ){
+                            alert('Question submitted!');
+                        }
+
+                        // Remove any non-digit characters
+                        const cleanedValue = currentValue.replace(/\D/g, '');
+
+                        // Format the value as HH:MM
+                        let formattedValue = '';
+                        if (cleanedValue.length >= 2) {
+                            formattedValue += cleanedValue.substr(0, 2);
+                        }
+                        if (cleanedValue.length >= 4) {
+                            formattedValue += ':' + cleanedValue.substr(2, 2);
+                        }
+
+                        // Update the input field with the formatted value
+                        this.value = formattedValue;
+                </script>
+
+
+            </div>
             
             <br><br>
             
@@ -92,7 +125,13 @@ else {
             
             <div class="form-group">
                 <div class="col-md-10">
-                <textarea class="form-control" id="resultSpace" name="question" id="question" rows="4" readonly>   <?php  ?> </textarea>
+                <textarea class="form-control" id="resultSpace" name="question" id="question" rows="4" readonly>
+                <?php
+                    if ($_SESSION['request'] === $T_ID) {
+                        echo 'The request evaluation is sent : Pending';
+                    }
+                 ?>
+                </textarea>
                 </div>
             </div>
             </form>
@@ -100,13 +139,15 @@ else {
        <script>
             var toSendRequest = document.getElementById('toSendRequest');
             var resultSpace = document.getElementById('resultSpace');
+            // var ExamTime = document.getElementById('ExamTime');
+            // var eTime= ExamTime.substr(2, 2);
         </script>
         
         </div>      
         </div>
     </div>
-<script src="asset/jquery/jquery.min.js"></script>
-<script src="asset/js/adminlte.js"></script>
+<script src="../bootstrap-4.6.1-dist/asset/jquery/jquery.min.js"></script>
+<script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
 </body>
 </html>
 <?php  
@@ -120,9 +161,15 @@ if($Q_exist>0)
     echo "<script> 
     toSendRequest.style.display = 'block'; 
         </script>";
-
+ 
 } 
 if(isset($_POST['submit'])){
+    // echo "<script> 
+    //     if(ExamTime == ''){
+    //     alert('The request is already submitted!')  
+    //     }</script>";
+    
+    $e_time=$_POST['ExamTime'];
     $selectedExamType = $_POST['examType'];
     if ($selectedExamType === 'midExam') {
         $e_type= 'Mid Exam';
@@ -135,11 +182,17 @@ if(isset($_POST['submit'])){
     if($Exam_exist>0)
     {
         echo "<script>alert('The request is already submitted!')</script>";
+
     }
     else{
-        $sql="insert into exam_bank (TEACHER_ID,COURSE_ID,COURSE_NAME,EXAM_TYPE,REQUEST_EVALUATION) values ('$T_ID','$c_id','$c_name','$e_type','asked')";
+        $sql="insert into exam_bank (TEACHER_ID,COURSE_ID,COURSE_NAME,EXAM_TYPE,EXAM_TIME,REQUEST_EVALUATION) values ('$T_ID','$c_id','$c_name','$e_type','$e_time','asked')";
         mysqli_query($con,$sql); 
         echo "<script> document.getElementById('resultSpace').value = ' The request evaluation is sent : Pending ';  </script>";
+    }
+    if($Exam_exist>0){
+        $_SESSION['request'] = 0;
+    }else{
+        $_SESSION['request'] = $T_ID;
     }
     
 }

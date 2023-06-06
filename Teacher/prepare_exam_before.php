@@ -12,9 +12,9 @@ session_start();
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Exam Preparation</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   <link rel="stylesheet" href="../asset/fontawesome/css/all.min.css">
-   <link rel="stylesheet" href="../asset/css/adminlte.min.css">
-   <link rel="stylesheet" href="../asset/css/style.css">
+   <link rel="stylesheet" href="../bootstrap-4.6.1-dist/all.min.css">
+   <link rel="stylesheet" href="../bootstrap-4.6.1-dist/adminlte.min.css">
+   <link rel="stylesheet" href="../style.css">
    <style type="text/css">
       td a.btn {
          font-size: 0.7rem;

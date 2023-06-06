@@ -1,13 +1,4 @@
 <?php
-// $server="localhost";
-// $dbuser="root";
-// $dbpass="";
-// $dbname="oes";
-// $con=mysqli_connect($server,$dbuser,$dbpass,$dbname) or die(mysqli_error($con));
-?>
-
-
-<?php
 class Database {
 	private $_connection;
 	private static $_instance; //The single instance
@@ -32,7 +23,6 @@ class Database {
 	}
 	// Magic method clone is empty to prevent duplication of connection
 	private function __clone() { }
-	// Get mysqli connection
 	public function getConnection() {
 		return $this->_connection;
 	}

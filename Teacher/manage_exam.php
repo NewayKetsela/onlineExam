@@ -39,9 +39,15 @@ else {
             <div class="container">
             <section class="content">  
                         <br<br>
+                <div id="ifNotDisplay" style="display: none;"> 
+                <br><br>
+                     <p style="font-size: large;"> There are currently no prepared exams available. </p>
+                     <p style="font-size: large;"> To edit the exam, you must first prepare the exam!</p>
+                </div> 
 
-                <h4 align="center"> Multiple Choice </h4>
-                <table width="100%" border="1" bordercolor="black" >
+                <div id="displayMultiple" style="display: none;">
+                <h4 > Multiple Choice </h4>
+                <table width="100%" border="1" bordercolor="#bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
                       <th  bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>A</strong></div></th>
@@ -51,7 +57,7 @@ else {
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION POINT</strong></div></th>
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>ANSWER</strong></div></th>
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>EDIT</strong></div></th>
-                      <th bgcolor="#e9eee2" class="style3"><div align="left" class="style4">DELETE</div></th>
+                      <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>DELETE</strong></div></th>
                     </tr>
 
                     <?php
@@ -61,8 +67,8 @@ else {
                         $username = $_SESSION['login'];
                         $T_ID = substr($username, -4);
                         // Fetch all the questions from the database where the teacher and multiple choice
-                        $query = "SELECT * FROM question WHERE TEACHER_ID='$T_ID' AND QUESTION_TYPE='multipleChoice'";
-                        $result = mysqli_query($con, $query);
+                        $query1 = "SELECT * FROM question WHERE TEACHER_ID='$T_ID' AND QUESTION_TYPE='multipleChoice'";
+                        $result = mysqli_query($con, $query1);
                         if (!$result) {
                             echo "Error: " . mysqli_error($con);
                         } else {
@@ -79,15 +85,15 @@ else {
                                 $answer = $row['ANSWER'];
                     ?>
                                 <tr>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $question; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $choice1; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $choice2; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $choice3; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $choice4; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $q_point; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $answer; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><a href="EditExam.php?QUESTION_ID=<?php echo $q_id;?>&QUESTION_TYPE=<?php echo $q_type;?>" >Edit</a></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><a href="DeleteExam.php?QUESTION_ID=<?php echo $q_id;?>" >Delete</a></strong></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $question; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $choice1; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $choice2; ?>></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $choice3; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $choice4; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $q_point; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $answer; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><a href="EditExam.php?QUESTION_ID=<?php echo $q_id;?>&QUESTION_TYPE=<?php echo $q_type;?>" >Edit</a></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><a href="DeleteExam.php?QUESTION_ID=<?php echo $q_id;?>" >Delete</a></div></td>
                                 </tr>
                     <?php
                             }
@@ -97,23 +103,25 @@ else {
                     ?>
 
                   </table>
+                  </div>
            
 <!--display fill in the blank -->
                   <br><br>
-                  <h4 align="center"> Fill In The Blank </h4>
-                <table width="100%" border="1" bordercolor="white" >
+                <div id="displayFillBlank" style="display: none;">
+                <h4 > Fill In The Blank </h4>
+                <table width="100%" border="1" bordercolor="#bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION POINT</strong></div></th>
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>ANSWER</strong></div></th>
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>EDIT</strong></div></th>
-                      <th bgcolor="#e9eee2" class="style3"><div align="left" class="style4">DELETE</div></th>
+                      <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>DELETE</strong></div></th>
                     </tr>
 
                     <?php
                         // Fetch all the questions from the database where the teacher and multiple choice
-                        $query = "SELECT * FROM question WHERE TEACHER_ID='$T_ID' AND QUESTION_TYPE='fillInTheBlank'";
-                        $result = mysqli_query($con, $query);
+                        $query2 = "SELECT * FROM question WHERE TEACHER_ID='$T_ID' AND QUESTION_TYPE='fillInTheBlank'";
+                        $result = mysqli_query($con, $query2);
                         if (!$result) {
                             echo "Error: " . mysqli_error($con);
                         } else {
@@ -126,33 +134,35 @@ else {
                                 $answer = $row['ANSWER'];
                     ?>
                                 <tr>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $question; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $q_point; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $answer; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><a href="EditExam.php?QUESTION_ID=<?php echo $q_id;?>&QUESTION_TYPE=<?php echo $q_type;?>" >Edit</a></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><a href="DeleteExam.php?QUESTION_ID=<?php echo $q_id;?>" >Delete</a></strong></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $question; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $q_point; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $answer; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><a href="EditExam.php?QUESTION_ID=<?php echo $q_id;?>&QUESTION_TYPE=<?php echo $q_type;?>" >Edit</a></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><a href="DeleteExam.php?QUESTION_ID=<?php echo $q_id;?>" >Delete</a></div></td>
                                 </tr>
                     <?php
                             }
                         }
                     ?>
                   </table>
+                  </div> 
 
 <!--display Essay question -->
-<br><br>
-                <h4 align="center"> Short Answer and Essay </h4>
-                <table width="100%" border="1" bordercolor="black" >
+                <br><br>
+                <div id="displayEssay" style="display: none;">
+                <h4 > Short Answer and Essay </h4>
+                <table width="100%" border="1" bordercolor="#bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION POINT</strong></div></th>
                        <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>EDIT</strong></div></th>
-                      <th bgcolor="#e9eee2" class="style3"><div align="left" class="style4">DELETE</div></th>
+                      <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>DELETE</strong></div></th>
                     </tr>
 
                     <?php
                         // Fetch all the questions from the database where the teacher and multiple choice
-                        $query = "SELECT * FROM question WHERE TEACHER_ID='$T_ID' AND QUESTION_TYPE='Essay'";
-                        $result = mysqli_query($con, $query);
+                        $query3 = "SELECT * FROM question WHERE TEACHER_ID='$T_ID' AND QUESTION_TYPE='Essay'";
+                        $result = mysqli_query($con, $query3);
                         if (!$result) {
                             echo "Error: " . mysqli_error($con);
                         } else {
@@ -165,25 +175,63 @@ else {
                                 $answer = $row['ANSWER'];
                     ?>
                                 <tr>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $question; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><?php echo $q_point; ?></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><a  href="EditExam.php?QUESTION_ID=<?php echo $q_id;?>&QUESTION_TYPE=<?php echo $q_type;?>" >Edit</a></strong></div></td>
-                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><strong><a href="DeleteExam.php?QUESTION_ID=<?php echo $q_id;?>" >Delete</a></strong></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $question; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $q_point; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><a  href="EditExam.php?QUESTION_ID=<?php echo $q_id;?>&QUESTION_TYPE=<?php echo $q_type;?>" >Edit</a></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><a href="DeleteExam.php?QUESTION_ID=<?php echo $q_id;?>" >Delete</a></div></td>
                                 </tr>
                     <?php
                             }
-                            mysqli_close($con);
+                           
                         }
                     ?>
                   </table>
+                  </div> 
+                  <script>
+                    var displayEssay = document.getElementById('displayEssay');
+                    var displayFillBlank = document.getElementById('displayFillBlank');
+                    var displayMultiple = document.getElementById('displayMultiple'); 
+                    var ifNotDisplay = document.getElementById('ifNotDisplay'); 
+                </script>
+                <?php
+                    $result = mysqli_query($con, $query1);
+                    $mul_exist=mysqli_num_rows($result);
+                    $q_fill_result = mysqli_query($con, $query2);
+                    $fill_exist=mysqli_num_rows($q_fill_result);
+                    $q_essay_result = mysqli_query($con, $query3);
+                    $essay_exist=mysqli_num_rows($q_essay_result);
+                    if( $mul_exist>0 || $fill_exist>0 || $essay_exist>0){ 
+                        if($mul_exist>0){
+                        echo "<script> 
+                        displayMultiple.style.display = 'block';  
+                        </script>"; 
+                        } 
+                        if($fill_exist>0){
+                            echo "<script> 
+                            displayFillBlank.style.display = 'block';  
+                            </script>"; 
+                        }
+                        if($essay_exist>0){
+                            echo "<script> 
+                            displayEssay.style.display = 'block';  
+                            </script>"; 
+                        }
+                     }
+                    else{
+                        echo "<script> 
+                        ifNotDisplay.style.display = 'block';  
+                        </script>";  
+                    } 
+                 mysqli_close($con);
+                ?>
 
 
             </section> 
             </div>      
          </div>
     </div>
-      <script src="asset/jquery/jquery.min.js"></script>
-      <script src="asset/js/adminlte.js"></script>
+      <script src="../bootstrap-4.6.1-dist/asset/jquery/jquery.min.js"></script>
+      <script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
    </body>
 </html>
 <?php } ?>

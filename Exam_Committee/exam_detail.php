@@ -5,6 +5,7 @@ if($_SESSION['login']==='none'){
 	echo "<script>window.open('../index.php?not_loggined=Please login!','_self')</script>";
 }
 else {
+    $exam_time=$_GET['EXAM_TIME'];
 	?>
 
 <html lang="en"> 
@@ -13,9 +14,9 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>View Exam</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../asset/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../asset/css/adminlte.min.css">
-    <link rel="stylesheet" href="../asset/css/style.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/adminlte.min.css">
+    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/style.css">
     <style>
         .style2 {  font-size: 12px}
         .style12 {  font-size: small; font-weight: bold; }
@@ -45,8 +46,9 @@ else {
                         <br<br>
 
                 <div id="displayMultiple" style="display: none;">
-                <h4 align="center"> Multiple Choice </h4>
-                <table width="100%" border="1" bordercolor="#bdaaaa" >
+                <h3>Time to take to this exam  <?php echo $exam_time;  ?></h3><br>
+                <h4 > Multiple Choice </h4>
+                <table width="100%" border="1" className="table table-lg p-10" bordercolor="#bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
                       <th  bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>A</strong></div></th>
@@ -104,7 +106,7 @@ else {
 <!--display fill in the blank -->
                   <br><br>
                 <div id="displayFillBlank" style="display: none;">
-                  <h4 align="center"> Fill In The Blank </h4>
+                  <h4 > Fill In The Blank </h4>
                   <table width="100%" border="1" bordercolor="bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
@@ -141,7 +143,7 @@ else {
 <!--display Essay question -->
                <br><br>
                <div id="displayEssay" style="display: none;">
-                  <h4 align="center"> Short Answer and Essay </h4>
+                  <h4 > Short Answer and Essay </h4>
                   <table width="100%" border="1" bordercolor="bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
@@ -205,8 +207,8 @@ else {
         </div>      
         </div>
     </div>
-<script src="asset/jquery/jquery.min.js"></script>
-<script src="asset/js/adminlte.js"></script>
+<script src="../bootstrap-4.6.1-dist/asset/jquery/jquery.min.js"></script>
+<script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
 </body>
 </html>
 <?php } ?>
