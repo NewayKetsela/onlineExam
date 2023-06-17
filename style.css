@@ -44,7 +44,6 @@
   }
   .btn {
     display: inline-block;
-    background-color: #4CAF50;
     color: #fff;
     padding: 10px 20px;
     text-align: center;
@@ -56,3 +55,45 @@
       margin-left: 50px;
   }
 
+
+  .login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .form-group input {
+    border-radius: 3px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn-primary {
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+#buttonLogin{
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+#navbarLogin{
+  padding: 0rem 0rem !important ;
+}

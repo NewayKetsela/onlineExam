@@ -26,26 +26,6 @@ else {
     <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/adminlte.min.css">
     <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Function to handle the button click
-            // $('#requestEvaluationButton').click(function() {
-            //     // Display "Pending" in the result space
-            //     $('#resultSpace').text('The request evaluation is sent : Pending');
-                
-            //     /* Make an AJAX request to submit the evaluation request */
-            //     $.ajax({
-            //         type: 'POST',
-            //         url: 'submit_evaluation_request.php',
-            //         success: function(response) {
-            //             // Handle the response from the server (if needed)
-            //             // For example, you can update the result space with the server's response
-            //             // $('#resultSpace').text(response);
-            //         }
-            //     });
-            // });
-        });
-    </script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -125,11 +105,28 @@ else {
             
             <div class="form-group">
                 <div class="col-md-10">
-                <textarea class="form-control" id="resultSpace" name="question" id="question" rows="4" readonly>
+                <textarea class="form-control" id="resultSpace" name="question" id="question" rows="4" readonly >
                 <?php
-                    if ($_SESSION['request'] === $T_ID) {
-                        echo 'The request evaluation is sent : Pending';
+                $check_ExamExist="select * from  exam_bank where TEACHER_ID='$T_ID' and REQUEST_EVALUATION='asked'  ";
+                $r_check_Exam=mysqli_query($con,$check_ExamExist);
+                $Exam_exist=mysqli_num_rows($r_check_Exam);
+
+                $check_ExamExistAS="select * from  exam_bank where TEACHER_ID='$T_ID' and ( REQUEST_EVALUATION='accepted' or REQUEST_EVALUATION='rejected') and STATUS='not taken' ";
+                $r_check_ExamAS=mysqli_query($con,$check_ExamExistAS);
+                $Exam_existAS=mysqli_num_rows($r_check_ExamAS);
+                if($Exam_exist>0)
+                   {
+                        echo "\nThe request evaluation has been sent : Pending";
+                   }
+                else if($Exam_existAS>0){
+                    while($row=mysqli_fetch_assoc($r_check_ExamAS))
+                        {
+                        $com=$row["COMMENT"];
+                        $r_eva=$row["REQUEST_EVALUATION"];
+                        echo "\nThe request evaluation is " . $r_eva . "\nCOMMENT :  " . $com;
+                       
                     }
+                }
                  ?>
                 </textarea>
                 </div>
@@ -139,8 +136,6 @@ else {
        <script>
             var toSendRequest = document.getElementById('toSendRequest');
             var resultSpace = document.getElementById('resultSpace');
-            // var ExamTime = document.getElementById('ExamTime');
-            // var eTime= ExamTime.substr(2, 2);
         </script>
         
         </div>      
@@ -176,7 +171,7 @@ if(isset($_POST['submit'])){
     } elseif ($selectedExamType === 'finalExam') {
         $e_type= 'Final Exam';
     }
-    $check_ExamExist="select * from  exam_bank where TEACHER_ID='$T_ID' and EXAM_TYPE='$e_type' and REQUEST_EVALUATION='asked' ";
+    $check_ExamExist="select * from  exam_bank where TEACHER_ID='$T_ID' and EXAM_TYPE='$e_type' and (REQUEST_EVALUATION='asked' or REQUEST_EVALUATION='accepted') ";
     $r_check_Exam=mysqli_query($con,$check_ExamExist);
     $Exam_exist=mysqli_num_rows($r_check_Exam);
     if($Exam_exist>0)
@@ -187,7 +182,7 @@ if(isset($_POST['submit'])){
     else{
         $sql="insert into exam_bank (TEACHER_ID,COURSE_ID,COURSE_NAME,EXAM_TYPE,EXAM_TIME,REQUEST_EVALUATION) values ('$T_ID','$c_id','$c_name','$e_type','$e_time','asked')";
         mysqli_query($con,$sql); 
-        echo "<script> document.getElementById('resultSpace').value = ' The request evaluation is sent : Pending ';  </script>";
+        echo "<script> document.getElementById('resultSpace').value = ' The request evaluation has been sent : Pending ';  </script>";
     }
     if($Exam_exist>0){
         $_SESSION['request'] = 0;

@@ -72,7 +72,7 @@
          <!-- Main Sidebar Container -->
          <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: rgba(39,93,43);">
                         <!-- Brand Logo -->
-            <a href="index.php" class="brand-link animated swing">
+            <a href="#" class="brand-link animated swing">
             <img src="../bootstrap-4.6.1-dist/asset/img/logo.png" alt="DSMS Logo" width="200" style="margin-bottom: -50px;">
             </a>
             <!-- Sidebar -->
@@ -82,7 +82,7 @@
                   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                      <li class="nav-item">
                         <a href="index.php" class="nav-link">
-                           <i class="nav-icon fa fa-tachometer-alt"></i>
+                           <i class="nav-icon fa fa-poll"></i>
                            <p>
                               Home
                            </p>
@@ -98,7 +98,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                            <li class="nav-item">
-                              <a href="Prepare_exam.php" class="nav-link">
+                              <a href="exam_prepare.php" class="nav-link">
                                  <i class="nav-icon fa fa-book"></i>
                                  <p>Prepare Exam</p>
                               </a>

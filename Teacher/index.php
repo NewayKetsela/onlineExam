@@ -8,6 +8,7 @@ else {
 	?>
 
 <html lang="en">
+<title>Teacher </title>
       <?php
          require("head.html");
       ?>

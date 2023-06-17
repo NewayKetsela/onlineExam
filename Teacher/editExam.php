@@ -116,7 +116,7 @@ else {
                         <!-- <div id="checkAnswer" style="color: red"></div> -->
                     </div>
                     <br>
-                    <div class="form-group" id="Question_Point">
+                    <div class="form-group" id="Question_Point" style="display: none;">
                         <div class="row">
                             <div class="col-md-2">
                             <label for="questionPoints" class="choice-label">QUESTION POINT:</label>
@@ -136,6 +136,7 @@ else {
         <script src="../bootstrap-4.6.1-dist/asset/jquery/jquery.min.js"></script>
         <script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
         <script>
+            var Question_Point = document.getElementById('Question_Point');
             var choicesWrapper = document.getElementById('choicesWrapper');
             var answerContainer = document.getElementById('answerContainer');
             var checkType ='<?php echo $question_type; ?>' ;
@@ -146,10 +147,16 @@ else {
             else if( checkType === 'fillInTheBlank'){
                 answerContainer.style.display = 'inline';
                 choicesWrapper.style.display = 'none';
+                Question_Point.style.display = 'block';
             }
             else if( checkType === 'Essay' ){
                 choicesWrapper.style.display = 'none';
                 answerContainer.style.display = 'none';
+                Question_Point.style.display = 'block';
+            }
+            else if(checkType === 'trueORFalse'){
+                choicesWrapper.style.display = 'none';
+                answerContainer.style.display = 'inline';
             }
       </script>
     </div>
@@ -168,13 +175,15 @@ else {
     $ch4 = $_POST['choice4'];
     $ans = $_POST['answer'];
     if( $q_type==='multipleChoice'){
-        $sqll = "Update question set QUESTION='$ques',CHOICE1='$ch1',CHOICE2='$ch2',CHOICE3='$ch3',CHOICE4='$ch4', QUESTION_POINT='$questionP',ANSWER='$ans' where QUESTION_ID='$q_id' ";
+        $sqll = "Update question set QUESTION='$ques',CHOICE1='$ch1',CHOICE2='$ch2',CHOICE3='$ch3',CHOICE4='$ch4',ANSWER='$ans' where QUESTION_ID='$q_id' ";
     }
     else if($q_type==='fillInTheBlank'){
         $sqll = "Update question set QUESTION='$ques', QUESTION_POINT='$questionP',ANSWER='$ans' where QUESTION_ID='$q_id' ";
     }
     else if($q_type==='Essay'){
         $sqll = "Update question set QUESTION='$ques', QUESTION_POINT='$questionP' where QUESTION_ID='$q_id' ";
+    }else if($q_type==='trueORFalse'){
+        $sqll = "Update question set QUESTION='$ques', QUESTION_POINT='$questionP',ANSWER='$ans' where QUESTION_ID='$q_id' ";
     }
    // Execute query
    if (mysqli_query($con, $sqll)) {

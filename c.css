@@ -1,4 +1,97 @@
-.style5 {color: #f8feff}
-        .style6 {color: #e9eee2}
+.style5 {color: #2619e4}
+        .style6 {color: #e6e7e4}
         .style5 {color: #bdaaaa}
         .style6 {color: #000000}
+
+
+
+
+        <html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    
+    .login-container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 100px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .form-group label {
+      font-weight: bold;
+    }
+    
+    .form-group input {
+      border-radius: 3px;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    
+    .form-group .btn-primary {
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+    <div class="login-container">
+      <h2>Login</h2>
+      <form  onsubmit="return validate()" action="index.php" id="loginForm" method="post">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username"  placeholder="Enter your username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        <div id="checkAll" style="color: red"></div>
+        <button type="submit" name="submit" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+      function validate(){
+      const  username= document.getElementById('username');
+      const password = document.getElementById('password');
+      document.getElementById("checkAll").innerHTML="";
+      const name = /^[A-Za-z]{3,}[0-9]{4}$/;
+      if(!username.value.match(name))
+             { 
+              document.getElementById("checkAll").innerHTML='Enter a valid Username!!'
+              return false;
+            }
+      if (password.value.length<6) {
+            	document.getElementById("checkAll").innerHTML="password should be greater than 6 characters!!"
+            	return false;
+             }
+      else{
+        return true;
+      } 
+      
+      }
+  </script>

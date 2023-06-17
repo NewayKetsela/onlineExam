@@ -44,10 +44,52 @@ else {
         <div class="container">
         <section class="content">  
                         <br<br>
-
-                <div id="displayMultiple" style="display: none;">
                 <h3>Time to take to this exam  <?php echo $exam_time;  ?></h3><br>
-                <h4 > Multiple Choice </h4>
+                <div id="displayTF" style="display: none;">
+                <h5 > True or false Question  </h5>
+                <table width="100%" border="1" bordercolor="#bdaaaa" >
+                    <tr>
+                      <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
+                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION POINT</strong></div></th>
+                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>ANSWER</strong></div></th>
+                    </tr>
+
+                    <?php
+                        require("../DBconnection.php");
+                        $db = Database::getInstance();
+                        $con = $db->getConnection();
+                        $username = $_SESSION['login'];
+                        $COM_ID = substr($username, -4);
+                        // Fetch all the questions from the database where the teacher and multiple choice
+                        $query10 = "SELECT q.* FROM question q JOIN teacher t ON q.TEACHER_ID = t.TEACHER_ID JOIN exam_committee e ON t.COURSE_ID = e.ASSIGN_COURSE_ID  where QUESTION_TYPE='trueORFalse' and STATUS='new' ";
+                        $resultTF = mysqli_query($con, $query10);
+                        if (!$resultTF) {
+                            echo "Error: " . mysqli_error($con);
+                        } else {
+                            while ($row = mysqli_fetch_array($resultTF)) {
+                                $q_id= $row['QUESTION_ID'];
+                                $q_type = $row['QUESTION_TYPE'];
+                                $question = $row['QUESTION'];
+                                $q_point = $row['QUESTION_POINT'];
+                                $answer = $row['ANSWER'];
+                    ?>
+                                <tr>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $question; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $q_point; ?></div></td>
+                                    <td bgcolor="#f8feff" class="style3"><div align="left" class="style9 style6"><?php echo $answer; ?></div></td>
+                                </tr>
+                    <?php
+                            }
+                        }
+                    ?>
+
+                  </table>
+                  </div>
+                  <br>
+
+        <!-- multiple choice -->
+                <div id="displayMultiple" style="display: none;">
+                <h5 > Multiple Choice Question </h5>
                 <table width="100%" border="1" className="table table-lg p-10" bordercolor="#bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
@@ -60,11 +102,7 @@ else {
                     </tr>
                         <!-- // $query = "SELECT * FROM question WHERE TEACHER_ID='$COM_ID' AND QUESTION_TYPE='multipleChoice'"; -->
                     <?php
-                        require("../DBconnection.php");
-                        $db = Database::getInstance();
-                        $con = $db->getConnection();
-                        $username = $_SESSION['login'];
-                        $COM_ID = substr($username, -4);
+
                         // Fetch all the questions from the database where the teacher and multiple choice
                         $q= "SELECT q.* FROM question q JOIN teacher t ON q.TEACHER_ID = t.TEACHER_ID JOIN exam_committee e ON t.COURSE_ID = e.ASSIGN_COURSE_ID  where QUESTION_TYPE='multipleChoice' and STATUS='new' ";
                         $result = mysqli_query($con, $q);
@@ -95,8 +133,6 @@ else {
                                 </tr>
                     <?php
                             }
-                            // Retrieve Number of records returned
-                            // $records = mysqli_num_rows($result);
                         }
                     ?>
 
@@ -104,9 +140,9 @@ else {
                  </div>
            
 <!--display fill in the blank -->
-                  <br><br>
+                  <br>
                 <div id="displayFillBlank" style="display: none;">
-                  <h4 > Fill In The Blank </h4>
+                  <h5 > Fill In The Blank Question  </h5>
                   <table width="100%" border="1" bordercolor="bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
@@ -141,9 +177,9 @@ else {
                 </div>
 
 <!--display Essay question -->
-               <br><br>
+               <br>
                <div id="displayEssay" style="display: none;">
-                  <h4 > Short Answer and Essay </h4>
+                  <h5 > Short Answer and Essay Question  </h5>
                   <table width="100%" border="1" bordercolor="bdaaaa" >
                     <tr>
                       <th bgcolor="#e9eee2" class="style3"><div align="left" class="style9 style5"><strong>QUESTION</strong></div></th>
@@ -175,11 +211,19 @@ else {
                   </table>
                 </div> 
                 <script>
+                    var displayTF = document.getElementById('displayTF');
                     var displayEssay = document.getElementById('displayEssay');
                     var displayFillBlank = document.getElementById('displayFillBlank');
                     var displayMultiple = document.getElementById('displayMultiple'); 
                 </script>
                 <?php
+                    $resultTF = mysqli_query($con, $query10);
+                    $TF_exist=mysqli_num_rows($resultTF);
+                    if($TF_exist>0){
+                        echo "<script> 
+                        displayTF.style.display = 'block';  
+                        </script>"; 
+                    } 
                     $result = mysqli_query($con, $q);
                     $mul_exist=mysqli_num_rows($result);
                     if($mul_exist>0){

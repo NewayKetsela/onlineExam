@@ -79,9 +79,7 @@ else {
                             </div>
                   
                   <br>
-                        <!-- each checkbox value and other comment should calculated by percentage and
-                        if persent is greater than 50% the exam should summite to main exam bank 
-                        which means ready for student   -->
+                        <!-- each checkbox value should calculated   -->
             <form method="post">
                   <li >check list for general parameter and test format</li>
                      <table style="width:100%" border="1">
