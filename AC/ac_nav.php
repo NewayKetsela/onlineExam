@@ -8,9 +8,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Online Examination System</title>
       <!-- Font Awesome -->
+      <script src="code.jquery.com_jquery-3.6.0.min.js"></script>
+      <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.css" >
+      <script src="bootstrap-4.6.1-dist/js/bootstrap.bundle.js"></script>
       <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/fontawesome/css/all.min.css">
       <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/adminlte.min.css">
       <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/style.css">
+      <link rel="stylesheet" href="../style.css">
             <style type="text/css">
                td a.btn{
                   font-size: 0.7rem;
@@ -41,11 +45,19 @@
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       
-         <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top" style="background-color: rgba(24,57,46);">
+   <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top" style="background-color: rgba(24,57,46);">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
             <li class="nav-item">
-                  <a class="nav-link"  href="#"  style="color:white;" ><label>Your Username: 
+                  <a class="nav-link"  href="#"  style="color:white;" ><label>Online Examination System 
+                      </label>
+                  </a>
+               </li>
+            </ul>
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                  <a class="nav-link"  href="#"  style="color:white;" ><label>
                      <?php
                      if (isset($_SESSION['login'])){
                      $username = $_SESSION['login'];
@@ -55,14 +67,6 @@
                       </label>
                   </a>
                </li>
-            </ul>
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-               <!-- <li class="nav-item">
-                  <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                  <i class="fas fa-expand-arrows-alt" style="color: rgb(211, 209, 207);" title="Full Screen"></i>
-                  </a>
-               </li> -->
                <li class="nav-item">
                   <a class="nav-link" href="../logout.php">
                   <i class="fas fa-power-off" style="color: rgb(211, 209, 207);" title="Logout"></i>
@@ -92,23 +96,76 @@
                         </a>
                      </li>
                      <li class="nav-item">
-                        <a href="set_schedule.php" class="nav-link">
+                        <a href="#" class="nav-link">
                            <i class="nav-icon far fa-file-word"></i>
                            <p>
-                           Set Schedule
+                           Manage Committee
                            </p>
+                           <i class="right fas fa-angle-left"></i>
                         </a>
+                        <ul class="nav nav-treeview">
+                           <li class="nav-item">
+                              <a href="create_committee.php" class="nav-link">
+                                 <i class="nav-icon fa fa-book"></i>
+                                 <p>create Account</p>
+                              </a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="edit_committee.php" class="nav-link">
+                                 <i class="nav-icon fa fa-book"></i>
+                                 <p>Edit Account</p>
+                              </a>
+                           </li>
+                        </ul>
                      </li>
                      <li class="nav-item">
-                        <a href="summary.html" class="nav-link">
-                           <i class="nav-icon fa fa-poll"></i>
+                        <a href="#" class="nav-link">
+                           <i class="nav-icon far fa-file-word"></i>
                            <p>
-                           Edit Schedule
+                           Manage Course
                            </p>
+                           <i class="right fas fa-angle-left"></i>
                         </a>
+                        <ul class="nav nav-treeview">
+                           <li class="nav-item">
+                              <a href="add_course.php" class="nav-link">
+                                 <i class="nav-icon fa fa-book"></i>
+                                 <p>Add Course</p>
+                              </a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="edit_course.php" class="nav-link">
+                                 <i class="nav-icon fa fa-book"></i>
+                                 <p>Edit Course</p>
+                              </a>
+                           </li>
+                        </ul>
                      </li>
                      <li class="nav-item">
-                        <a href="summary.html" class="nav-link">
+                        <a href="#" class="nav-link">
+                           <i class="nav-icon far fa-file-word"></i>
+                           <p>
+                           Manage Schedule
+                           </p>
+                           <i class="right fas fa-angle-left"></i>
+                        </a>
+                        <ul class="nav nav-treeview">
+                           <li class="nav-item">
+                              <a href="set_schedule.php" class="nav-link">
+                                 <i class="nav-icon fa fa-book"></i>
+                                 <p>Set Schedule</p>
+                              </a>
+                           </li>
+                           <li class="nav-item">
+                              <a href="edit_schedule.php" class="nav-link">
+                                 <i class="nav-icon fa fa-book"></i>
+                                 <p>Edit Schedule</p>
+                              </a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li class="nav-item">
+                        <a href="update_acc.php" class="nav-link">
                            <i class="nav-icon fa fa-poll"></i>
                            <p>
                            Update Account

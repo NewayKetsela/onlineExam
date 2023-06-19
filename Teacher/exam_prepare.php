@@ -37,48 +37,6 @@ if ($_SESSION['login'] === 'none') {
                 echo " <script>alert('Invalid file. Please make sure the file matches the required format.') </script>";
             }
         } 
-    // else if ($questionType === 'multipleChoice') {
-    //     if (isValidFormatMultipleChoice($fileContent)) {
-    //         // $x=true;
-    //         $questions = multipleParseQuestions($fileContent);
-    //         // foreach ($questions as $question) {
-    //         //     $q = mysqli_real_escape_string($con, $question['question']);
-    //         //     $optionA = mysqli_real_escape_string($con, $question['optionA']);
-    //         //     $optionB = mysqli_real_escape_string($con, $question['optionB']);
-    //         //     $optionC = mysqli_real_escape_string($con, $question['optionC']);
-    //         //     $optionD = mysqli_real_escape_string($con, $question['optionD']);
-    //         //     $answer = mysqli_real_escape_string($con, $question['answer']);
-    //         //     if($answer !=='A '|| $answer !=='B' || $answer !=='C' || $answer !=='D'){
-    //         //         $x=false;
-    //         //         break;
-    //         //     }
-    //         // }
-    //         // if($x){
-    //                 foreach ($questions as $question) {
-    //                 $q = mysqli_real_escape_string($con, $question['question']);
-    //                 $optionA = mysqli_real_escape_string($con, $question['optionA']);
-    //                 $optionB = mysqli_real_escape_string($con, $question['optionB']);
-    //                 $optionC = mysqli_real_escape_string($con, $question['optionC']);
-    //                 $optionD = mysqli_real_escape_string($con, $question['optionD']);
-    //                 $answer = mysqli_real_escape_string($con, $question['answer']);
-
-    //                 $query = "INSERT INTO question (QUESTION_TYPE, QUESTION, CHOICE1, CHOICE2, CHOICE3, CHOICE4, QUESTION_POINT, ANSWER, TEACHER_ID, STATUS)
-    //                 VALUES ('$questionType', '$q', '$optionA', '$optionB', '$optionC', '$optionD', '$questionPoints', '$answer', '$teacher_id', '$status')";
-    //                 $result = mysqli_query($con, $query);
-    //                 if (!$result) {
-    //                     echo "Error: " . mysqli_error($con);
-    //                 }
-    //             }
-                
-    //             echo "<script>alert('File entered successfully')</script>";   
-    //         // }else {
-    //         //     echo "<script>alert('There is a question does not have correct answer  ')</script>";
-    //         // }
-            
-    //     } else {
-    //         echo "<script>alert('Invalid file format')</script>";
-    //     }
-    // }
         else if ($questionType === 'multipleChoice') {
             if (isValidFormatMultipleChoice($fileContent)) {
                 $questions = multipleParseQuestions($fileContent);

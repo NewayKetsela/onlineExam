@@ -12,12 +12,6 @@ else {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AC</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/adminlte.min.css">
-    <link rel="stylesheet" href="../bootstrap-4.6.1-dist/asset/css/style.css">
-    <link rel="stylesheet" href="../style.css">
 </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="wrapper">

@@ -144,7 +144,7 @@ if(isset($_POST['submit'])){
    
    <link rel="stylesheet" href="style.css" >
    <script src="bootstrap-4.6.1-dist/js/bootstrap.bundle.js"></script>
- <script src="all.min.js" ></script>
+ 
 </head>
 <body>
 <header>

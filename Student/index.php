@@ -51,16 +51,19 @@ else {
                   <thead>
                     <?phP
                       $x=0;
-                   $query10=" SELECT s.*
-                    FROM student s
-                    JOIN Course c ON s.DEPARTMENT_NAME = c.DEPARTMENT_NAME AND s.YEAR = c.YEAR ";
-                    $resultTF = mysqli_query($con, $query10);
-                    if (!$resultTF) {
-                        echo "Error: " . mysqli_error($con);
-                    } else {
-                        while ($row = mysqli_fetch_array($resultTF)) {
-                            $s_id= $row['STUDENT_ID'];
-                            if($s_id == $stu_ID ){
+                      $q="select YEAR,DEPARTMENT_NAME from student where STUDENT_ID='$stu_ID ' ";
+                      $SELECTED=mysqli_query($con, $q);
+                      if($row = mysqli_fetch_array($SELECTED)){
+                        $year= $row['YEAR'];
+                        $d_name= $row['DEPARTMENT_NAME'];
+
+                      }
+                      $qur="select * from course where DEPARTMENT_NAME='$d_name' and YEAR='$year' ";
+                      $SE_course=mysqli_query($con, $qur);
+                      $commit_exist=mysqli_num_rows($SE_course);
+                     if($commit_exist>0)
+                      {
+                      
                                 $t=" SELECT eb.*FROM exam_bank eb JOIN Course c ON eb.COURSE_ID = c.COURSE_ID 
                                    where REQUEST_EVALUATION='accepted' and STATUS='not taken' and TIME_SET='set'  ";
                                 $ttt= mysqli_query($con, $t);
@@ -109,8 +112,7 @@ else {
                                         $button_disabled = 'disabled';
                                     }
 
-                                 }   
-                               }      
+                                       
                         ?>  
                     </tr>
                     <tr>&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp 
@@ -129,7 +131,8 @@ else {
                                     // echo $timezone;?> </span>
                             </div>
                             <span id="takeExam">  
-                                <?php echo $c_id ?> 
+                                <?php echo $c_id;
+                                // echo $current_date->format('Y-m-d');?> 
                                     <br> 
                                     <a href=" take_exam.php?TEACHER_ID=<?php echo $t_id ?>  "  >  
                                     <button name="view_exam_submit"  class="btn btn-primary"  <?php echo $button_disabled ?>  >Take Exam Now</button> 
@@ -137,7 +140,8 @@ else {
                             </span>
 
                         </div></tr>
-                        <?php    
+                        <?php       
+                               
                                   }
                                 }
                                }

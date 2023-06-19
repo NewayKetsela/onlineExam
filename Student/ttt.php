@@ -4,14 +4,6 @@ $t_id = $_GET['TEACHER_ID'];
 require("../DBconnection.php");
 $db = Database::getInstance();
 $con = $db->getConnection();
-$TFnumbers = [];
-$MLnumbers = [];
-$FBnumbers = [];
-$ESnumbers = [];
-$_SESSION['tf'] = $TFnumbers;
-$_SESSION['ml'] = $MLnumbers;
-$_SESSION['fb'] = $FBnumbers;
-$_SESSION['es'] = $ESnumbers;
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +12,6 @@ $_SESSION['es'] = $ESnumbers;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Online Examination System</title>
-    
     <script src="code.jquery.com_jquery-3.6.0.min.js"></script>
     <script src="bootstrap-4.6.1-dist/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.css" >
@@ -64,61 +55,6 @@ $_SESSION['es'] = $ESnumbers;
             margin-right: 10px;
         }
     </style>
-
-<script>
-  // Get the form element
-  const form = document.getElementById('quizForm');
-
-  // Add an event listener for form submission
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting
-
-    // Handle form submission logic here
-    // You can access the form data using form.elements or form.serialize()
-
-    // Example: Store the current page's answers in local storage
-    const currentPage = getCurrentPage();
-    const formData = new FormData(form);
-    const answers = Array.from(formData.entries()).map(([name, value]) => ({ name, value }));
-    localStorage.setItem(`answers_page_${currentPage}`, JSON.stringify(answers));
-
-    // TODO: Add your logic to handle form submission
-    // You can send the form data to the server, validate answers, calculate scores, etc.
-
-    // Example: Submit the form
-    form.submit();
-  });
-
-  // Function to get the current page number from the URL
-  function getCurrentPage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return Number(urlParams.get('page')) || 1;
-  }
-
-  // Function to restore the previous page's answers when navigating back
-  function restorePreviousAnswers() {
-    const currentPage = getCurrentPage();
-    const previousPage = currentPage - 1;
-
-    // Retrieve the previous page's answers from local storage
-    const previousAnswers = JSON.parse(localStorage.getItem(`answers_page_${previousPage}`));
-
-    if (previousAnswers) {
-      // Set the answers for the previous page in the form
-      previousAnswers.forEach(({ name, value }) => {
-        const input = form.elements[name];
-        if (input) {
-          input.value = value;
-        }
-      });
-    }
-  }
-
-  // Call the function to restore previous answers when the page loads
-  document.addEventListener('DOMContentLoaded', restorePreviousAnswers);
-</script>
-
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -194,7 +130,6 @@ $_SESSION['es'] = $ESnumbers;
                     </div>
                     <?php  }  ?>
                 </div>
-                 
 
                 <div class="question">
                     <?php  if($q_type=='multipleChoice'){  
@@ -263,8 +198,8 @@ $_SESSION['es'] = $ESnumbers;
                 <br>
                 <div class="navigation-buttons">
                     <?php if ($currentPage > 1) { ?>
-                    <a href="take_exam.php?TEACHER_ID=<?php echo $t_id; ?>&page=<?php echo $currentPage - 1; ?>" style="margin-right: 300px;">
-                        <button type="button" class="btn btn-success">Back Page</button>
+                    <a href="take_exam.php?TEACHER_ID=<?php echo $t_id; ?>&page=<?php echo $currentPage - 1; ?>"  style="margin-right: 300px;">
+                        <button type="button" class="btn btn-primary">Back Page</button>
                     </a>
                     <?php } ?>
                     <?php if ($hasNextPage) { ?>
@@ -272,12 +207,8 @@ $_SESSION['es'] = $ESnumbers;
                         <button type="button" class="btn btn-primary">Next Page</button>
                     </a>
                     <?php } ?>
-                    <?php if (!$hasNextPage) { ?>
-                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                    <?php } ?>
                 </div>
             </form>
-         
         </div>
     </div>
 </div>

@@ -160,7 +160,7 @@ else {
                 <input type="" id="start-time" name="start-time" placeholder="Enter Time like 6:30" required>
                 <div id="display_time_error" style="color: red"> </div>
                 </div><br>
-                <button type="submit" name="submit" class="btn btn-success" style="width: 23%; " >Set Schedule</button>
+                <button type="submit" name="submit" class="btn btn-primary" style="width: 23% !important;" >Set Schedule</button>
             </form> 
             <script type="text/javascript">
                 function validate() {
