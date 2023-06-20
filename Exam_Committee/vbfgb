@@ -80,7 +80,7 @@ else {
                   
                   <br>
                         <!-- each checkbox value should calculated   -->
-            <form method="post" id="examForm">
+            <form method="post">
                   <li >check list for general parameter and test format</li>
                      <table style="width:100%" border="1">
                   
@@ -348,7 +348,28 @@ else {
                     </table>
               </ol>
                <div id="sub_evaluate" style="display: none;">
-   
+              <!-- <form id="examForm">
+                    <div class="criteria">
+                        <label for="correctness">Correctness:</label>&nbsp&nbsp
+                        <select id="correctness" name="correctness">
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                        <option value="poor">Poor</option>
+                        </select>
+                    </div><br>
+                    
+                    <div class="criteria">
+                        <label for="completeness">Completeness:</label>&nbsp&nbsp
+                        <select id="completeness" name="completeness">
+                        <option value="excellent">Excellent</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                        <option value="poor">Poor</option>
+                        </select>
+                    </div><br> -->
+                    
+                    <!-- Add more criteria fields based on your evaluation criteria -->
                     
                     <label for="comments">Comments:</label><br>
                     <textarea id="comments" name="comment" rows="4" cols="100"></textarea><br>
@@ -384,47 +405,7 @@ else {
 <script src="../bootstrap-4.6.1-dist/asset/js/adminlte.js"></script>
 </body>
 </html>
-<script>
-  // Get the form element
-  const form = document.getElementById('examForm');
 
-  // Add an event listener for form submission
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting
-
-    // Validate the form
-    if (validateForm()) {
-      // If the form is valid, you can submit it or perform other actions here
-      form.submit();
-    }
-  });
-
-  // Function to validate the form
-  function validateForm() {
-    // Get all the radio buttons in the form
-    const radioButtons = form.querySelectorAll('input[type="radio"]');
-    let isValid = true;
-
-    // Check if any radio button is not selected
-    radioButtons.forEach(function(radioButton) {
-      const name = radioButton.getAttribute('name');
-      const isChecked = form.querySelector('input[name="' + name + '"]:checked');
-
-      if (!isChecked) {
-        isValid = false;
-      }
-    });
-
-    // Display an error message if the form is not valid
-    if (!isValid) {
-      alert('Please fill out all the required fields.');
-    }
-
-    return isValid;
-  }
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
 
 <?php
 if(isset($_POST['submit_evaluation'])){

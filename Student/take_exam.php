@@ -4,14 +4,7 @@ $t_id = $_GET['TEACHER_ID'];
 require("../DBconnection.php");
 $db = Database::getInstance();
 $con = $db->getConnection();
-$TFnumbers = [];
-$MLnumbers = [];
-$FBnumbers = [];
-$ESnumbers = [];
-$_SESSION['tf'] = $TFnumbers;
-$_SESSION['ml'] = $MLnumbers;
-$_SESSION['fb'] = $FBnumbers;
-$_SESSION['es'] = $ESnumbers;
+
 ?>
 
 <!DOCTYPE html>

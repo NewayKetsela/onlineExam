@@ -1,3 +1,4 @@
+
 <?php 
 session_start(); 
 $t_id = $_GET['TEACHER_ID'];

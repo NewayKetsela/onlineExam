@@ -98,9 +98,12 @@ else {
 
                                     list($current_hours, $current_minutes) = explode(':', $current_time);
                                     list($start_hours, $start_minutes) = explode(':', $start_time);
+                                    list($end_hours, $end_minutes) = explode(':', $end_time);
+                                    $cal_end_time = intval($end_hours) * 60 + intval($end_minutes);
                                     $cal_start_time = intval($start_hours) * 60 + intval($start_minutes);
                                     $cal_current_time = intval($current_hours) * 60 + intval($current_minutes);   
                                     echo  $e_date;  
+                                    //      && $cal_current_time > $cal_end_time
                                     // Determine if the button should be enabled or disabled
                                     $button_disabled = '';
                                     if ($exam_e_date == $current_date) {
